@@ -16,22 +16,24 @@
 *-release
 *.dll
 
-## Ignore Visual Studio Solution and Project files - using premake, so we don't want them versioned
+## Ignore Visual Studio Solution and Project files - using CMake
 *.vcxproj*
 *.sln
 *.idb
 
-## Ignore Make files - using premake, so we don't want them versioned
+## Ignore Make files - using CMake
 *.make
 Makefile
 
-## Ignore CodeBlocks files - using premake
+## Ignore CodeBlocks files - using CMake
 *.cbp
 *.workspace
 
-## Ignore Xcode 3 files - using premake
+## Ignore Xcode 3 files - using CMake
 *.xcodeproj
 
+## Ignore CLion directory - using CMake
+.idea/
 
 #-- temporary files --
 
@@ -166,7 +168,7 @@ publish/
 # Publish Web Output
 *.[Pp]ublish.xml
 *.azurePubxml
-# TODO: Comment the next line if you want to checkin your web deploy settings 
+# TODO: Comment the next line if you want to checkin your web deploy settings
 # but database connection strings (with potential passwords) will be unencrypted
 *.pubxml
 *.publishproj
