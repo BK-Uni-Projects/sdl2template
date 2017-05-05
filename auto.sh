@@ -7,16 +7,6 @@ mkdir -p $DIR/build
 printf "OK\n"
 cd $DIR/build
 
-
-###
-printf "== Installing Packages\n"
-if conan install .. --build missing ; then
-  printf "== Installed Packages  OK\n"
-else
-  printf "== FAILED to Install Packages - Exiting\n"
-  exit 1
-fi
-
 ###
 printf "== Creating build system\n"
 

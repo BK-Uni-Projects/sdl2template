@@ -1,9 +1,24 @@
 project(sdl2template)
 cmake_minimum_required(VERSION 3.0)
 
+# Copy conan.cmake file to build folder
+# Could also Download Conan automatically (not working through CLion)
+if(NOT EXISTS "${CMAKE_BINARY_DIR}/conan.cmake")
+    FILE(COPY conan.cmake DESTINATION "${CMAKE_BINARY_DIR}")
+   #message(STATUS "Downloading conan.cmake from https://github.com/memsharded/cmake-conan")
+   #file(DOWNLOAD "https://raw.githubusercontent.com/conan-io/cmake-conan/master/conan.cmake"
+   #              "${CMAKE_BINARY_DIR}/conan.cmake" SHOW_PROGRESS LOG DOWNLOAD_STATUS INACTIVITY_TIMEOUT 3 TIMEOUT 5)
+   #message(STATUS "-- Download complete --")
+   #message(STATUS ${DOWNLOAD_STATUS})
+endif()
 
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
-CONAN_BASIC_SETUP()
+message(STATUS "Including conan.cmake")
+include("${CMAKE_BINARY_DIR}/conan.cmake")
+
+# Run Conan
+conan_cmake_run(CONANFILE conanfile.txt
+                BASIC_SETUP
+                BUILD missing)
 
 ADD_EXECUTABLE(myGame src/main.cpp)
 TARGET_LINK_LIBRARIES(myGame ${CONAN_LIBS})
